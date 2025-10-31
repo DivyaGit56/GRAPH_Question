@@ -14,7 +14,7 @@ class Solution {
         int n = grid.length;
         int m = grid[0].length;
         
-        int[] dRow = {-1, 0, 1, 0};
+        int[] dRow = {-1, 0, 1, 0}; // up, right,down,left
         int[] dCol = {0, 1, 0, -1};
 
         while(!q.isEmpty()){
