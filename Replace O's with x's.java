@@ -1,0 +1,57 @@
+class Solution {
+    
+    private static void dfs(int row, int col, int vis[][], char grid[][], int delrow[],int delcol[]){
+        vis[row][col] = 1;
+        int n = grid.length;
+        int m = grid[0].length;
+        
+        for(int i = 0; i<4; i++){
+            int nrow = row+delrow[i];
+            int ncol = col+delcol[i];
+            
+            if(nrow>=0&&nrow<n && ncol>= 0 && ncol<m && vis[nrow][ncol] == 0 && grid[nrow][ncol]=='0'){
+                dfs(nrow, ncol, vis, grid, delrow, delcol);
+            }
+        }
+        
+    }
+    public char[][]fill(char[][] grid) {
+        // Code here
+        int n = grid.length;
+        int m = grid[0].length;
+        
+        int delrow[] = {-1,0,1,0};
+        int delcol[] = {0,1,,0,-1};
+        int vis[][] = new int[n][m];
+        
+        // traverse first and last row
+    for(int j = 0; j<m; j++)
+    // for first row
+    if(vis[0][j] == 0 && grid[0][j] == '0'){
+        dfs(0,j,vis,grid,delrow,delcol);
+    }
+    // for last row
+    if(vis[n-1][j] == 0 && grid[n-1][j] == '0'){
+        dfs(n-1,j,vis,grid,delrow,delcol);
+    }
+    // traverse for first and last col
+    for(int i = 0; i<n; i++)
+    // for first col
+    if(vis[i][0] == 0 && grid[i][0] == '0'){
+        dfs(i,0,vis,grid,delrow,delcol);
+    }
+    // for last row
+    if(vis[i][m-1] == 0 && grid[i][m-1] == '0'){
+        dfs(i,m-1,vis,grid,delrow,delcol);
+    }
+    for(int i = 0; i<n; i++){
+        for(int j = 0; j<m;j++){
+            if(vis[i][j] == 0 && grid[i][j] =='0'){
+                grid[i][j] ='x';
+            }
+        }
+    }
+    return grid;
+    
+    }
+}
